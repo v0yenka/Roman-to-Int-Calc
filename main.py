@@ -25,45 +25,39 @@ def get_roman_input():
         return None
 
 def roman_to_int(numeral):
-  final_answer = 0
-  # Handling the basic numerals first
-  for i in numeral:
-    if i == "M":
-      final_answer += 1000
-    elif i == "D":
-      final_answer += 500
-    elif i == "C":
-      final_answer += 100
-    elif i == "L":
-      final_answer += 50
-    elif i == "X":
-      final_answer += 10
-    elif i == "V":
-      final_answer += 5
-    elif i == "I":
-      final_answer += 1
+    # Convert a valid Roman numeral to an integer
+    # Tried to optimize with a dictionary and loop
+    numeral = numeral.upper()
+    values = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
+    
+    special_cases = {
+        "IV": 4,
+        "IX": 9,
+        "XL": 40,
+        "XC": 90,
+        "CD": 400,
+        "CM": 900
+    }
 
-  # Now handling the special cases
-  if "CM" in numeral:
-    final_answer += 900
-    numeral = numeral.replace("CM", "")
-  if "CD" in numeral:
-    final_answer += 400
-    numeral = numeral.replace("CD", "")
-  if "XC" in numeral:
-    final_answer += 90
-    numeral = numeral.replace("XC", "")
-  if "XL" in numeral:
-    final_answer += 40
-    numeral = numeral.replace("XL", "")
-  if "IX" in numeral:
-    final_answer += 9
-    numeral = numeral.replace("IX", "")
-  if "IV" in numeral:
-    final_answer += 4
-    numeral = numeral.replace("IV", "")
+    total = 0
+    i = 0
 
-  print("The roman numeral '" + roman_int + "' you entered translates to: " + str(final_answer) + "!")
+    # Looping through the numeral
+    while i < len(numeral):
+        # Fixed the special case handling
+        # Checking if a special case (like IV or IX) starts at position i
+        if i + 1 < len(numeral) and numeral[i:i+2] in special_cases:
+            total += special_cases[numeral[i:i+2]]
+            i += 2
+        else:
+            total += values[numeral[i]]
+            i += 1
+
+    return total
+    
+
+    
+
 
 # Main loop
 if __name__ == "__main__":
@@ -71,6 +65,7 @@ if __name__ == "__main__":
         roman_int = get_roman_input()
         if roman_int:
             roman_to_int(roman_int)
+            print(f"The integer value is: {roman_to_int(roman_int)}")
 
         again = input("Do you want to convert another Roman numeral? (y/n): ").lower()
         if again != "y":
