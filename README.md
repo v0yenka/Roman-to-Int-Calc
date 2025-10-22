@@ -11,7 +11,7 @@ A Python application that converts **Roman numerals** into integers using a grap
 - Provides clear error messages for invalid input.
 - Simple and professional GUI interface for user interaction.
 - **GUI version is fully functional and validated**.
-- The standard non-GUI version will be updated soon to include full support for special cases.
+- The standard non-GUI version is also up-to-date now.
 
 ---
 
@@ -27,8 +27,7 @@ A Python application that converts **Roman numerals** into integers using a grap
 
 ## Future Updates
 
-- The GUI handles all special cases correctly.
-- The main non-GUI calculator will be updated to support the same level of accuracy.
+- Full focus will be placed on the functionality of GUI.
 
 ## Author
 
